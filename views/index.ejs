@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        <%= title %>
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/index.css">
+</head>
+
+<body>
+    <form class="my-form" action="/map">
+        <div class="container">
+            <h1>Display points inside specified country</h1>
+            <ul>
+                <li>
+                    <select name="country" required>
+                        <option selected disabled>-- Please choose a country --</option>
+                        <% for (const row of res) { %>
+                            <option value="<%= row['alpha-3'] %>"><%= row.name %></option>
+                        <% } %>
+                    </select>
+                </li>
+                <li>
+                    <div class="grid grid-4">
+                        <input type="number" name="nrOfMarkers" placeholder="number of points" required>
+                    </div>
+                </li>
+                <li>
+                    <div class="grid grid-3">
+                        <button class="btn-grid" type="submit">
+                            <span class="front">SUBMIT</span>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <footer>
+        <div class="container">
+            <small>Made with <span>❤</span> by <a href="https://github.com/JohanDjarvKarltorp" target="_blank">Johan Djärv Karltorp</a></small>
+        </div>
+    </footer>
+</body>

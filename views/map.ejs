@@ -1,0 +1,33 @@
+<%- include("header", {title: title}); %>
+
+<body>
+	<div id="snackbar">
+		<i class="fa fa-circle-o-notch fa-spin"></i> Creating coordinates
+	</div>
+	<div id="mapid"></div>
+
+	<div id="myModal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<div class="container">
+				<h1>Display all points at the same time</h1>
+				<p>Recommended max value is <b>5000</b> points. After that, the site will become unusable.</p>
+				<p> Your browser will start to have responsive issues after <b>1000</b> points.</p>
+				<br>
+				<p>Current marker count: <b><%= res.nrOfMarkers %></b>.</p>
+				<br>
+				<p>Are you sure you want to display all points without using clusters?</p>
+
+				<div class="clearfix">
+					<button type="button" class="cancelbtn">Cancel</button>
+					<button type="button" class="yesbtn">Yes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="/script/map.js"></script>
+<script src="/script/markers.js"></script>
+<script src="/script/supercluster.js"></script>
+<script src="/script/customControls.js"></script>
+

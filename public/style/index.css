@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+body {
+    font: 18px/1.5 "Open Sans", sans-serif;
+    background: #292a2b;
+    color: #c2c2c2;
+    margin: 1.5rem 0;
+}
+
+input,
+select,
+textarea,
+button {
+    font-size: 100%;
+}
+
+button,
+select {
+    cursor: pointer;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+/* Remove native arrow on IE */
+select::-ms-expand {
+    display: none;
+}
+
+/*Remove dotted outline from selected option on Firefox*/
+/*https://stackoverflow.com/questions/3773430/remove-outline-from-select-box-in-ff/18853002#18853002*/
+/*We use !important to override the color set for the select on line 99*/
+select:-moz-focusring {
+    color: transparent !important;
+    text-shadow: 0 0 0 #c2c2c2;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: 800px;
+    margin: 5% auto;
+    padding: 0 1.5rem;
+}
+
+
+/* FORM ELEMENTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.my-form h1 {
+    margin-bottom: 10rem;
+}
+
+.my-form li {
+    margin-bottom: 1.5rem;
+}
+
+.my-form select,
+.my-form input,
+.my-form button {
+    width: 100%;
+    line-height: 1.5;
+    padding: 15px 10px;
+    border: 1px solid hsl(0, 0%, 10%);
+    color: #c2c2c2;
+    background: hsl(0, 0%, 14%);
+    transition: background-color 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25),
+    transform 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25);
+}
+
+.my-form select:focus,
+.my-form input:focus,
+.my-form button:hover,
+.my-form button:focus {
+    background-color: hsl(155, 20%, 20%);
+}
+
+.my-form select {
+    background-repeat: no-repeat;
+    background-position: center right 12px;
+    background-size: 15px 15px;
+}
+
+.my-form select {
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/down.svg);
+}
+
+
+/* FORM BTNS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.my-form button {
+    font-weight: bold;
+}
+
+
+/* FOOTER
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+footer {
+    position: relative;
+    bottom: 0vh;
+    color: silver;
+    font-size: 1rem;
+    text-align: right;
+    backface-visibility: hidden;
+}
+
+footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+footer span {
+    color: red;
+}
+
+
+/* MQ
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@media screen and (min-width: 600px) {
+    .my-form .grid {
+        display: grid;
+        grid-gap: 1.5rem;
+    }
+
+    .my-form .grid-2 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .my-form .grid-3 {
+        grid-template-columns: auto auto auto;
+        align-items: center;
+    }
+
+    .my-form .grid > *:not(:last-child) {
+        margin-bottom: 0;
+    }
+
+    .my-form .required-msg {
+        display: block;
+    }
+}
