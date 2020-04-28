@@ -1,5 +1,14 @@
 # Coordinates
-Display randomize points inside specified country.
+Display randomize points inside specified country on a interactive map.
+- for the interactive map I use [Leaflet](https://leafletjs.com/)
+- for large numbers of points I use [supercluster](https://github.com/mapbox/supercluster) (second image)
+
+## Images
+![home](/images/home.png)
+![map](/images/map.png)
+![map2](/images/map2.png)
+![map3](/images/map3.png)
+
 
 ## Run
 - clone the repo `git@github.com:JohanDjarvKarltorp/coordinates.git`
