@@ -19,8 +19,8 @@ class LoadingBar {
     }
 
     update(processed, total) {
-        // eslint-disable-next-line no-magic-numbers
-        let onePercentOfSize = this.size / 100;
+        let entire = 100;
+        let onePercentOfSize = this.size / entire;
         let toInt = 100;
         let percent = (processed / total) * toInt;
         let percentOfSize = percent * onePercentOfSize;

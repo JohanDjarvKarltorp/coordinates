@@ -50,7 +50,7 @@ router.get('/data/coordinates', async (req, res) => {
     const country = req.query['country'];
     const nrOfMarkers = parseInt(req.query['nrOfMarkers']);
 
-    const shape = await geoJSON.get(country);
+    const shape = geoJSON.get(country);
     const coordinates = await geoJSON.coordinates(shape, nrOfMarkers);
 
     let data = {
