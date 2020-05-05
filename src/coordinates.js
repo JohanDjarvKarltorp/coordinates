@@ -16,7 +16,6 @@ const country = {
             features: []
         };
 
-        let coordinates;
         let countryName = shape.properties.ADMIN;
         let amount = nrOfCoordinates.toLocaleString();
         const start = process.hrtime();
@@ -27,8 +26,9 @@ const country = {
         loadingBar.init();
 
         for (let i = 0; i < nrOfCoordinates; i++) {
-            coordinates = getCoordinates(shape);
-            data.features.push(toGeoJSON(coordinates));
+            let current = getCoordinates(shape);
+
+            data.features.push(toGeoJSON(current));
             loadingBar.update(i, nrOfCoordinates);
         }
 
@@ -41,8 +41,9 @@ const country = {
 
 
 function toGeoJSON(coordinates) {
-    let lat = 0;
-    let lng = 1;
+    let lat = 1;
+    let lng = 0;
+    let string = `${coordinates[lat]},${coordinates[lng]}`;
 
     return {
         type: "Feature",
@@ -53,8 +54,8 @@ function toGeoJSON(coordinates) {
         properties: {
             popup: `<b>Lat:&nbsp;&nbsp;${coordinates[lat]}<br> Lng: ${coordinates[lng]}</b><br>` +
                 "<span onclick='copyCoords(this)' onmouseout='reset(this)" +
-                "'class='mdi mdi-content-copy tooltip'>" +
-                `<span class='tooltiptext'>Copy</span></span><p>[${coordinates}]</p>`,
+                "'class='mdi mdi-content-copy tooltip'> " +
+                `<span class='tooltiptext'>Copy</span></span><p>${string}</p>`,
         }
     };
 }

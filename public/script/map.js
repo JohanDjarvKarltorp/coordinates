@@ -59,6 +59,7 @@ fetch(`http://localhost:1337/data/coordinates?country=${countryCode}&nrOfMarkers
     })
     .then((res) => {
         loadCoordinates(res.geoJSON);
+        coordinates = res.geoJSON.features.map((e) => e.geometry.coordinates.reverse());
     });
 
 function whileFetchingCoordinates() {

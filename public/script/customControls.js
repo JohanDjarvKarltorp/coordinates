@@ -220,7 +220,11 @@ let addAllMarkersListener = () => {
 
 let addDownloadListener =() => {
     document.getElementById('download').addEventListener('click', () => {
-        let dataStr = JSON.stringify(coordinates); // broken
+        let dataStr = {
+            coordinates: coordinates
+        };
+        dataStr = JSON.stringify(dataStr);
+
         let dataUri = 'data:coordinates/json;charset=utf-8,' + encodeURIComponent(dataStr);
 
         let exportFileDefaultName = 'coordinates.json';
