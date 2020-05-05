@@ -5,28 +5,30 @@ let points = L.geoJson(null, {
 }).addTo(map);
 
 let ready = false;
-const worker = new Worker('script/worker.js');
+let worker;
 
-function useSuperClusters(points) {
+function useSuperClusters(coordinates) {
+    worker = new Worker('script/worker.js');
+
+    worker.onmessage = function (e) {
+        if (e.data.ready) {
+            ready = true;
+            update();
+        } else if (e.data.expansionZoom) {
+            map.flyTo(e.data.center, e.data.expansionZoom);
+        } else {
+            points.clearLayers();
+            points.addData(e.data);
+        }
+    };
+
     worker.postMessage({
-        points: points,
+        points: coordinates ,
     });
     ready = true;
     map.on('moveend', update);
     update();
 }
-
-worker.onmessage = function (e) {
-    if (e.data.ready) {
-        ready = true;
-        update();
-    } else if (e.data.expansionZoom) {
-        map.flyTo(e.data.center, e.data.expansionZoom);
-    } else {
-        points.clearLayers();
-        points.addData(e.data);
-    }
-};
 
 function update() {
     if (!ready) {return;}
