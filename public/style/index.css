@@ -16,7 +16,6 @@ body {
 
 input,
 select,
-textarea,
 button {
     font-size: 100%;
 }
@@ -69,9 +68,6 @@ ul {
     padding: 0 1.5rem;
 }
 
-
-/* FORM ELEMENTS
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
 .my-form h1 {
     margin-bottom: 10rem;
 }
@@ -110,16 +106,10 @@ ul {
     background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/down.svg);
 }
 
-
-/* FORM BTNS
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
 .my-form button {
     font-weight: bold;
 }
 
-
-/* FOOTER
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
 footer {
     position: relative;
     bottom: 0vh;
@@ -138,9 +128,6 @@ footer span {
     color: red;
 }
 
-
-/* MQ
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
 @media screen and (min-width: 600px) {
     .my-form .grid {
         display: grid;
