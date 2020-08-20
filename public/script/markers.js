@@ -23,7 +23,7 @@ let loadCoordinates = (points) => {
     }
 };
 
-let reset = (target) => target.firstChild.innerHTML = "Copy";
+let reset = (target) => target.firstChild.nextSibling.innerHTML = "Copy";
 
 let copyCoords = (target) => {
     let range = document.createRange();
@@ -35,5 +35,5 @@ let copyCoords = (target) => {
 
     window.getSelection().removeAllRanges();
 
-    target.firstChild.innerHTML = "Copied";
+    target.firstChild.nextSibling.innerHTML = "Copied";
 };
