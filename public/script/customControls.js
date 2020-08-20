@@ -47,9 +47,9 @@ let addListener = (data) => {
             } else {
                 map.removeLayer(data.layer);
             }
-            event.target.className = `mdi ${data.trueIcon}`;
+            event.target.parentElement.firstChild.className = `mdi ${data.trueIcon}`;
 
-            let tooltip = event.target.nextElementSibling;
+            let tooltip = event.target.parentElement.lastChild;
             let tooltipText = tooltip.innerHTML;
 
             tooltip.innerHTML = tooltipText.replace('Hide', 'Show');
@@ -59,9 +59,9 @@ let addListener = (data) => {
             } else {
                 map.addLayer(data.layer);
             }
-            event.target.className = `mdi ${data.falseIcon}`;
+            event.target.parentElement.firstChild.className = `mdi ${data.falseIcon}`;
 
-            let tooltip = event.target.nextElementSibling;
+            let tooltip = event.target.parentElement.lastChild;
             let tooltipText = tooltip.innerHTML;
 
             tooltip.innerHTML = tooltipText.replace('Show', 'Hide');
@@ -72,7 +72,7 @@ let addListener = (data) => {
 
 let displayAllMarkers = (event) => {
     map.removeLayer(markers);
-    event.target.className = `mdi mdi-hexagon-multiple-outline`;
+    event.target.parentElement.firstChild.className = `mdi mdi-hexagon-multiple-outline`;
 
     map.addLayer(geoJSON);
 };
@@ -199,7 +199,7 @@ let addAllMarkersListener = () => {
             } else {
                 displayAllMarkers(event);
 
-                let tooltip = event.target.nextElementSibling; // is empty sometimes and breaks
+                let tooltip = event.target.parentElement.lastChild;
                 let tooltipText = tooltip.innerHTML;
 
                 tooltip.innerHTML = tooltipText.replace('Hide', 'Show');
@@ -207,9 +207,9 @@ let addAllMarkersListener = () => {
         } else {
             map.removeLayer(geoJSON);
             map.addLayer(markers);
-            event.target.className = `mdi mdi-map-marker-multiple-outline`;
+            event.target.parentElement.firstChild.className = `mdi mdi-map-marker-multiple-outline`;
 
-            let tooltip = event.target.nextElementSibling;
+            let tooltip = event.target.parentElement.lastChild;
             let tooltipText = tooltip.innerHTML;
 
             tooltip.innerHTML = tooltipText.replace('Show', 'Hide');
