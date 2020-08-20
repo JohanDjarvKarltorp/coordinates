@@ -1,9 +1,11 @@
 /* global L, map, coordinates, country, bounds, nrOfMarkers, markers, geoJSON */
 
-let allMarkerToggle = false;
-let countryToggle = false;
-let boundsToggle = true;
-let markersToggle = false;
+const toggles = {
+    typeMarkers: false,
+    country: false,
+    bounds: true,
+    displayMarkers: false,
+};
 
 
 let customControl = (data) => {
@@ -41,7 +43,8 @@ let customControl = (data) => {
 
 let addListener = (data) => {
     document.getElementById(data.id).addEventListener('click', (event) => {
-        if (!data.toggle) {
+
+        if (!toggles[data.toggleName]) {
             if (!map.hasLayer(data.layer)) {
                 map.removeLayer(geoJSON); // if marker cluster is hidden (should find a better solution)
             } else {
@@ -54,7 +57,7 @@ let addListener = (data) => {
 
             tooltip.innerHTML = tooltipText.replace('Hide', 'Show');
         } else {
-            if (allMarkerToggle && data.id === 'markers') {
+            if (toggles.typeMarkers && data.id === 'markers') {
                 map.addLayer(geoJSON); // if marker cluster is hidden (should find a better solution)
             } else {
                 map.addLayer(data.layer);
@@ -66,11 +69,30 @@ let addListener = (data) => {
 
             tooltip.innerHTML = tooltipText.replace('Show', 'Hide');
         }
-        data.toggle = !data.toggle;
+
+        toggles[data.toggleName] = !toggles[data.toggleName];
+
     });
 };
 
+let checkDisplayMarkersIcon = () => {
+    if (toggles.displayMarkers) {
+        let parent = document.getElementById("markers");
+
+        parent.firstChild.className = `mdi mdi-map-marker-off-outline`;
+
+        let tooltip = parent.lastChild;
+        let tooltipText = tooltip.innerHTML;
+
+        tooltip.innerHTML = tooltipText.replace('Show', 'Hide');
+
+        toggles.displayMarkers = false;
+    }
+};
+
 let displayAllMarkers = (event) => {
+    checkDisplayMarkersIcon();
+
     map.removeLayer(markers);
     event.target.parentElement.firstChild.className = `mdi mdi-hexagon-multiple-outline`;
 
@@ -119,7 +141,7 @@ function AddCountryBtn() {
         layer: country,
         trueIcon: 'mdi-earth',
         falseIcon: 'mdi-earth-off',
-        toggle: countryToggle,
+        toggleName: 'country',
     };
 
     customControl(controlData);
@@ -138,7 +160,7 @@ function AddBoundsBtn() {
         layer: bounds,
         trueIcon: 'mdi-checkbox-blank-outline',
         falseIcon: 'mdi-checkbox-blank-off-outline',
-        toggle: boundsToggle,
+        toggleName: 'bounds',
     };
 
     customControl(controlData);
@@ -157,7 +179,7 @@ function AddDisplayMarkersBtn() {
         layer: markers,
         trueIcon: 'mdi-map-marker-outline',
         falseIcon: 'mdi-map-marker-off-outline',
-        toggle: markersToggle,
+        toggleName: 'displayMarkers',
     };
 
     customControl(controlData);
@@ -168,7 +190,7 @@ function AddDisplayMarkersBtn() {
 
 let addAllMarkersListener = () => {
     document.getElementById('display-all-markers').addEventListener('click', (event) => {
-        if (!allMarkerToggle) {
+        if (!toggles.typeMarkers) {
             if (nrOfMarkers >= 1000) {
                 let first = 0;
                 let modal = document.getElementById("myModal");
@@ -205,6 +227,8 @@ let addAllMarkersListener = () => {
                 tooltip.innerHTML = tooltipText.replace('Hide', 'Show');
             }
         } else {
+            checkDisplayMarkersIcon();
+
             map.removeLayer(geoJSON);
             map.addLayer(markers);
             event.target.parentElement.firstChild.className = `mdi mdi-map-marker-multiple-outline`;
@@ -214,7 +238,7 @@ let addAllMarkersListener = () => {
 
             tooltip.innerHTML = tooltipText.replace('Show', 'Hide');
         }
-        allMarkerToggle = !allMarkerToggle;
+        toggles.typeMarkers = !toggles.typeMarkers;
     });
 };
 
