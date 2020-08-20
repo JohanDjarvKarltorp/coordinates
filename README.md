@@ -1,5 +1,5 @@
 # Coordinates
-Display randomize points inside specified country on a interactive map.
+Display randomized points inside a specified country on an interactive map.
 - for the interactive map I use [Leaflet](https://leafletjs.com/)
 - for large numbers of points I use [supercluster](https://github.com/mapbox/supercluster) (second image)
 
